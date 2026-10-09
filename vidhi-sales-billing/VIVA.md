@@ -1,0 +1,16 @@
+# VIVA EXPLANATION (short answers)
+- **React** – JavaScript library to build the UI from reusable components; page updates automatically when state changes.
+- **Vite** – fast development server/build tool for React.
+- **Node.js** – lets JavaScript run on the server (outside the browser).
+- **Express** – Node framework to create routes/APIs (GET, POST, PUT, DELETE).
+- **Sequelize** – ORM: we use JavaScript models instead of writing raw SQL.
+- **MySQL** – relational database that permanently stores users, products, invoices.
+- **API** – a way for two programs (React and Express) to talk. **REST API** – API that uses URLs + HTTP methods and sends JSON.
+- **CRUD** – Create (POST), Read (GET), Update (PUT), Delete (DELETE).
+- **Model** – JavaScript class that represents a table (e.g. Invoice). **Controller** – function that handles a request and gives a response. **Middleware** – code that runs between request and controller (e.g. checks the login token).
+- **JWT** – signed token given after login; React sends it in every request to prove who the user is. **bcrypt** – hashes passwords so plain passwords are never stored.
+- **React → Express** – `fetch('/api/...')` with JSON + JWT. **Express → MySQL** – controller calls Sequelize (`Invoice.create`, `findAll`) which runs SQL.
+- **Invoice calculation** – subtotal = Σ qty×price; discount = subtotal×%/100; GST on (amount after discount); total = subtotal + GST − discount. React shows it live, the server recalculates before saving.
+- **GST** – Intra-State: CGST + SGST (half each). Inter-State: IGST (full).
+- **Stock** – on save, stock = stock − quantity inside a database transaction; more than stock is rejected; delete/edit restores stock.
+- **Profit** = (subtotal − discount) − cost. Negative = Loss.
