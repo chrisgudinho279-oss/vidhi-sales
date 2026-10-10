@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { API_BASE } from '@/shared/config';
 
 let cache = null; // remember the logo so it is fetched only once
 export const refreshBranding = () => { cache = null; window.dispatchEvent(new Event('branding')); };
@@ -6,7 +7,7 @@ export const refreshBranding = () => { cache = null; window.dispatchEvent(new Ev
 export function useBranding() {
   const [b, setB] = useState(cache);
   useEffect(() => {
-    const load = () => fetch('/api/settings/public').then((r) => r.json()).then((d) => { cache = d; setB(d); }).catch(() => {});
+    const load = () => fetch(`${API_BASE}/settings/public`).then((r) => r.json()).then((d) => { cache = d; setB(d); }).catch(() => {});
     if (!cache) load();
     window.addEventListener('branding', load);
     return () => window.removeEventListener('branding', load);
